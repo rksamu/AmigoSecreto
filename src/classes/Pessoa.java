@@ -1,14 +1,14 @@
 package classes;
 
-public class Amigo {
+public class Pessoa {
 
     private String nome;
     private String apelido;
     private String senha;
     private String[] desejos;
-    private Amigo amigoSecreto;
+    private Pessoa amigoSecreto;
 
-    public Amigo(String nome, String apelido, String senha) {
+    public Pessoa(String nome, String apelido, String senha) {
         this.nome = nome;
         this.apelido = apelido;
         this.senha = senha;

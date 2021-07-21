@@ -7,15 +7,15 @@ public class Grupo {
 
     private String nome;
     private LocalDate dataSorteio;
-    private ArrayList<Amigo> participantes;
+    private ArrayList<Pessoa> participantes;
 
     public Grupo(String nome, LocalDate dataSorteio) {
         this.nome = nome;
         this.dataSorteio = dataSorteio;
-        this.participantes = new ArrayList<Amigo>();
+        this.participantes = new ArrayList<Pessoa>();
     }
 
-    public void adicionarPessoa(Amigo pessoa) {
+    public void adicionarPessoa(Pessoa pessoa) {
         participantes.add(pessoa);
     }
 
@@ -27,7 +27,7 @@ public class Grupo {
         return dataSorteio;
     }
 
-    public ArrayList<Amigo> getParticipantes() {
+    public ArrayList<Pessoa> getParticipantes() {
         return participantes;
     }
 }
