@@ -4,5 +4,5 @@ module AmigoSecreto {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens controller;
+    opens gui;
 }

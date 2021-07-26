@@ -1,4 +1,4 @@
-package classes;
+package aplicacao;
 
 public class Pessoa {
 
@@ -6,7 +6,7 @@ public class Pessoa {
     private String apelido;
     private String senha;
     private String[] desejos;
-    private Pessoa amigoSecreto;
+    //private Pessoa amigoSecreto;
 
     public Pessoa(String nome, String apelido, String senha) {
         this.nome = nome;
@@ -14,5 +14,8 @@ public class Pessoa {
         this.senha = senha;
     }
 
+    public void registrar() {
+
+    }
 
 }

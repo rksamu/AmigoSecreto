@@ -1,4 +1,4 @@
-package controller;
+package gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main extends Application {
@@ -15,6 +14,9 @@ public class Main extends Application {
 
     private static Scene mainScene;
     private static Scene pessoasScene;
+    private static Scene gruposScene;
+    private static Scene presentesScene;
+    private static Scene sorteioScene;
 
 
 
@@ -28,11 +30,18 @@ public class Main extends Application {
 
         Parent fxmlMain = FXMLLoader.load(getClass().getResource("view/main.fxml"));
         mainScene = new Scene(fxmlMain, 640, 480);
-        try {
-            Parent fxmlPessoas = FXMLLoader.load(getClass().getResource("view/pessoas.fxml"));
-            pessoasScene = new Scene(fxmlPessoas, 640, 480);
-        }
-		catch (IOException e) { e.printStackTrace(); }
+
+        Parent fxmlPessoas = FXMLLoader.load(getClass().getResource("view/pessoas.fxml"));
+        pessoasScene = new Scene(fxmlPessoas, 640, 480);
+
+        Parent fxmlGrupos = FXMLLoader.load(getClass().getResource("view/grupos.fxml"));
+        gruposScene = new Scene(fxmlGrupos, 640, 480);
+
+        Parent fxmlPresentes = FXMLLoader.load(getClass().getResource("view/presentes.fxml"));
+        presentesScene = new Scene(fxmlPresentes, 640, 480);
+
+        Parent fxmlSorteio = FXMLLoader.load(getClass().getResource("view/sorteio.fxml"));
+        sorteioScene = new Scene(fxmlSorteio, 640, 480);
 
         primaryStage.setScene(mainScene);
         primaryStage.show();
@@ -47,6 +56,18 @@ public class Main extends Application {
             case "pessoas":
                 stage.setScene(pessoasScene);
                 stage.setTitle("Pessoas");
+                break;
+            case "grupos":
+                stage.setScene(gruposScene);
+                stage.setTitle("Grupos");
+                break;
+            case "presentes":
+                stage.setScene(presentesScene);
+                stage.setTitle("Presentes");
+                break;
+            case "sorteio":
+                stage.setScene(sorteioScene);
+                stage.setTitle("Sorteio");
                 break;
         }
 

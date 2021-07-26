@@ -1,4 +1,4 @@
-package classes;
+package aplicacao;
 
 public class Presente {
 
