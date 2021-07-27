@@ -3,8 +3,12 @@ package gui;
 import aplicacao.Pessoa;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+
+import static gui.Main.repPessoas;
 
 public class PessoasController {
 
@@ -19,6 +23,9 @@ public class PessoasController {
 
     @FXML
     private Label aviso;
+
+    @FXML
+    private ChoiceBox<String> choiceBox = new ChoiceBox<String>(repPessoas.getApelidos());
 
     @FXML
     protected void btCancelarAction (ActionEvent e) {
@@ -51,12 +58,26 @@ public class PessoasController {
     @FXML
     protected void btSalvarAction (ActionEvent e) {
         System.out.println("Botão Salvar pressionado.");
-        var pessoa = new Pessoa(
-                nomeCompleto.getText(),
-                apelido.getText(),
-                senha.getText()
-        );
-
+        if (nomeCompleto != null && apelido != null && senha!=null) {
+            var pessoa = new Pessoa(
+                    nomeCompleto.getText(),
+                    apelido.getText(),
+                    senha.getText()
+            );
+            var doIt = true;
+            for (Pessoa i : repPessoas.getPessoas()) {
+                if (pessoa.equals(i)) {
+                    doIt = false;
+                    break;
+                }
+            }
+            if (doIt) {
+                repPessoas.add(pessoa);
+            }
+            else {
+                System.out.println(" Apelido em uso.");
+            }
+        }
 
     }
 

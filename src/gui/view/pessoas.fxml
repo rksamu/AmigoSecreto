@@ -86,7 +86,7 @@
                               <ListView layoutX="298.0" layoutY="135.0" prefHeight="232.0" prefWidth="170.0" />
                               <Button layoutX="242.0" layoutY="194.0" mnemonicParsing="false" onAction="#btAddAction" text="Add" />
                               <Button layoutX="244.0" layoutY="251.0" mnemonicParsing="false" onAction="#btDelAction" text="Del" />
-                              <ChoiceBox layoutX="186.0" layoutY="52.0" prefWidth="150.0" />
+                              <ChoiceBox fx:id="choiceBox" layoutX="186.0" layoutY="52.0" prefWidth="150.0" />
                               <Label layoutX="134.0" layoutY="56.0" prefHeight="17.0" prefWidth="40.0" text="Pessoa" />
                               <Label layoutX="54.0" layoutY="118.0" text="Todos os presentes:" />
                               <Label layoutX="298.0" layoutY="118.0" text="Presentes da pessoa:" />

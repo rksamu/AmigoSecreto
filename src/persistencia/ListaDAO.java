@@ -19,7 +19,7 @@ public class ListaDAO {
         this.nomeDoArquivo = nomeDoArquivo;
     }
 
-
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public ObservableList carregar() {
         System.out.println("Carregando " + nomeDoArquivo);
 
@@ -48,7 +48,7 @@ public class ListaDAO {
         }
     }
 
-
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void salvar(ObservableList obsList) {
         System.out.println("Salvando " + nomeDoArquivo);
 

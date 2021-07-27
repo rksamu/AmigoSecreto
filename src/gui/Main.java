@@ -1,5 +1,6 @@
 package gui;
 
+import aplicacao.RepPessoas;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +18,8 @@ public class Main extends Application {
     private static Scene gruposScene;
     private static Scene presentesScene;
     private static Scene sorteioScene;
-
+    
+    public static final RepPessoas repPessoas = new RepPessoas();
 
 
     @Override
