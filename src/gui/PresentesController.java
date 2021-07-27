@@ -1,10 +1,13 @@
 package gui;
 
+import aplicacao.Pessoa;
 import aplicacao.Presente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import static gui.Main.repPresentes;
 
 public class PresentesController {
 
@@ -28,6 +31,12 @@ public class PresentesController {
     }
 
     @FXML
+    protected void btPessoasAction (ActionEvent e) {
+        System.out.println("Botão pessoas pressionado.");
+        Main.changeScreen("pessoas");
+    }
+
+    @FXML
     protected void btGruposAction (ActionEvent e) {
         System.out.println("Botão Grupos pressionado.");
 
@@ -46,11 +55,24 @@ public class PresentesController {
         System.out.println("Botão Salvar pressionado.");
 
         if(categoria != null && descricao != null && preco != null) {
-            var pessoa = new Presente(
+            var presente = new Presente(
                     categoria.getText(),
                     descricao.getText(),
                     Float.parseFloat(preco.getText())
             );
+            var doIt = true;
+            for (Presente i : repPresentes.getPresentes()) {
+                if (presente.equals(i)) {
+                    doIt = false;
+                    break;
+                }
+            }
+            if (doIt) {
+                repPresentes.add(presente);
+            }
+            else {
+                System.out.println("Presente já existente.");
+            }
         }
 
     }

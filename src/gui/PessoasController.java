@@ -5,10 +5,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-
 import static gui.Main.repPessoas;
+import static gui.Main.repPresentes;
 
 public class PessoasController {
 
@@ -25,20 +26,34 @@ public class PessoasController {
     private Label aviso;
 
     @FXML
-    private ChoiceBox<String> choiceBox = new ChoiceBox<String>(repPessoas.getApelidos());
+    private ChoiceBox<String> choiceBox = new ChoiceBox<String>();
+
+    @FXML
+    private ListView<String> listaPresentes = new ListView();
+
+    @FXML
+    private ListView<String> listaPresentesPessoa = new ListView();
+
+    @FXML
+    private void initialize() {
+        choiceBox.setItems(repPessoas.getApelidos());
+        listaPresentes.setItems(repPresentes.getCategorias());
+        try {
+            choiceBox.setValue(repPessoas.getApelidos().get(0));
+            listaPresentesPessoa.setItems(repPessoas.getPessoa(choiceBox.getValue()).getDesejos());
+            System.out.println(repPessoas.getPessoa(choiceBox.getValue()).getDesejos());
+        }
+        catch (IndexOutOfBoundsException e) {
+            System.out.println("Erro ao inizializar \"Pessoas\"");
+        }
+
+    }
 
     @FXML
     protected void btCancelarAction (ActionEvent e) {
         System.out.println("Botão Cancelar pressionado.");
 
         Main.changeScreen("main");
-    }
-
-    @FXML
-    protected void btGruposAction (ActionEvent e) {
-        System.out.println("Botão Grupos pressionado.");
-
-        Main.changeScreen("grupos");
     }
 
     @FXML
@@ -49,10 +64,24 @@ public class PessoasController {
     }
 
     @FXML
+    protected void btGruposAction (ActionEvent e) {
+        System.out.println("Botão Grupos pressionado.");
+
+        Main.changeScreen("grupos");
+    }
+
+    @FXML
     protected void btSorteioAction (ActionEvent e) {
         System.out.println("Botão Sorteio pressionado.");
 
         Main.changeScreen("sorteio");
+    }
+
+    @FXML
+    protected void btAtualizarAction (ActionEvent e) {
+        System.out.println("Botão Atualizar pressionado.");
+
+        this.initialize();
     }
 
     @FXML
@@ -73,9 +102,10 @@ public class PessoasController {
             }
             if (doIt) {
                 repPessoas.add(pessoa);
+                this.initialize();
             }
             else {
-                System.out.println(" Apelido em uso.");
+                System.out.println("Apelido em uso.");
             }
         }
 
@@ -84,25 +114,40 @@ public class PessoasController {
     @FXML
     protected void btAddAction (ActionEvent e) {
         System.out.println("Botão Add pressionado.");
-
-
-
+        if(choiceBox.getValue() != null) {
+            var pessoa = repPessoas.getPessoa(choiceBox.getValue());
+            var presente = repPresentes.getPresente(listaPresentes.getSelectionModel().getSelectedItem());
+            var doIt = true;
+            for (var i : pessoa.getDesejos()) {
+                if(i.equals(presente.getCategoria())) {
+                    doIt = false;
+                    break;
+                }
+            }
+            if (presente != null && doIt) {
+                pessoa.addPresente(presente);
+            }
+        }
+        this.initialize();
     }
 
     @FXML
     protected void btDelAction (ActionEvent e) {
         System.out.println("Botão Del pressionado.");
-
-
-
+        if(choiceBox.getValue() != null) {
+            var pessoa = repPessoas.getPessoa(choiceBox.getValue());
+            var presente = repPresentes.getPresente(listaPresentesPessoa.getSelectionModel().getSelectedItem());
+            if (presente != null) {
+                pessoa.removePresente(presente);
+            }
+        }
+        this.initialize();
     }
 
     @FXML
     protected void btSalvarPresentesAction (ActionEvent e) {
         System.out.println("Botão Salvar (Presentes das Pessoas) pressionado.");
-
-
-
+        repPessoas.salvar();
     }
 
 }

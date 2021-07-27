@@ -1,6 +1,8 @@
 package aplicacao;
 
-public class Presente {
+import java.io.Serializable;
+
+public class Presente implements Serializable {
 
     private String categoria;
     private String descricao;
@@ -22,5 +24,22 @@ public class Presente {
 
     public float getPreco() {
         return preco;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Presente)) return false;
+        Presente presente = (Presente) o;
+        return getCategoria().equals(presente.getCategoria());
+    }
+
+    @Override
+    public String toString() {
+        return "Presente{" +
+                "categoria='" + categoria + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", preco=" + preco +
+                '}';
     }
 }

@@ -13,14 +13,26 @@ public class RepPessoas {
     private final ObservableList<Pessoa> pessoas;
     private final ListaDAO dao = new ListaDAO("Pessoas.txt");
 
-    public RepPessoas() {
-        this.pessoas = dao.carregar();
-    }
+    public RepPessoas() { this.pessoas = dao.carregar(); }
 
     public void add(Pessoa pessoa) {
         this.pessoas.add(pessoa);
 
         dao.salvar(this.pessoas);
+    }
+
+    public void salvar() {
+        dao.salvar(this.pessoas);
+    }
+
+    public Pessoa getPessoa(String apelido) {
+        var temp = new Pessoa("", apelido, "");
+        for (var i : pessoas){
+            if(temp.equals(i)){
+                return i;
+            }
+        }
+        return null;
     }
 
     public void remover(Pessoa pessoa) {
