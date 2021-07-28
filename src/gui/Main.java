@@ -1,5 +1,6 @@
 package gui;
 
+import aplicacao.RepGrupos;
 import aplicacao.RepPessoas;
 import aplicacao.RepPresentes;
 import javafx.application.Application;
@@ -22,6 +23,7 @@ public class Main extends Application {
     
     public static final RepPessoas repPessoas = new RepPessoas();
     public static final RepPresentes repPresentes = new RepPresentes();
+    public static final RepGrupos repGrupos = new RepGrupos();
 
 
     @Override

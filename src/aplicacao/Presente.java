@@ -31,7 +31,7 @@ public class Presente implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Presente)) return false;
         Presente presente = (Presente) o;
-        return getCategoria().equals(presente.getCategoria());
+        return this.getCategoria().equals(presente.getCategoria());
     }
 
     @Override

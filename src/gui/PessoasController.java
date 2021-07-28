@@ -8,10 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import static gui.Main.repPessoas;
 import static gui.Main.repPresentes;
 
-public class PessoasController {
+public class PessoasController { //implements Initializable {
 
     @FXML
     private TextField nomeCompleto;
@@ -37,16 +40,14 @@ public class PessoasController {
     @FXML
     private void initialize() {
         choiceBox.setItems(repPessoas.getApelidos());
+        choiceBox.setOnAction(this::attList);
         listaPresentes.setItems(repPresentes.getCategorias());
-        try {
-            choiceBox.setValue(repPessoas.getApelidos().get(0));
-            listaPresentesPessoa.setItems(repPessoas.getPessoa(choiceBox.getValue()).getDesejos());
-            System.out.println(repPessoas.getPessoa(choiceBox.getValue()).getDesejos());
-        }
-        catch (IndexOutOfBoundsException e) {
-            System.out.println("Erro ao inizializar \"Pessoas\"");
-        }
+    }
 
+    private void attList(ActionEvent e) {
+        if(choiceBox.getValue() != null) {
+            listaPresentesPessoa.setItems(repPessoas.getPessoa(choiceBox.getValue()).getDesejos());
+        }
     }
 
     @FXML
@@ -128,7 +129,7 @@ public class PessoasController {
                 pessoa.addPresente(presente);
             }
         }
-        this.initialize();
+        this.attList(e);
     }
 
     @FXML
@@ -138,10 +139,11 @@ public class PessoasController {
             var pessoa = repPessoas.getPessoa(choiceBox.getValue());
             var presente = repPresentes.getPresente(listaPresentesPessoa.getSelectionModel().getSelectedItem());
             if (presente != null) {
+                System.out.println(1);
                 pessoa.removePresente(presente);
             }
         }
-        this.initialize();
+        this.attList(e);
     }
 
     @FXML

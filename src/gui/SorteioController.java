@@ -2,8 +2,15 @@ package gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 
 public class SorteioController {
+
+    @FXML
+    private ChoiceBox<String> choiceBoxGrupo = new ChoiceBox<String>();
+
+    @FXML
+    private ChoiceBox<String> choiceBoxPessoa = new ChoiceBox<String>();
 
     @FXML
     protected void btPessoasAction (ActionEvent e) {

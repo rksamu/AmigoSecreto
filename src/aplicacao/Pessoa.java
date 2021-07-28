@@ -37,7 +37,13 @@ public class Pessoa implements Serializable {
     }
 
     public void removePresente(Presente presente) {
-        desejos.remove(presente);
+        Presente temp = null;
+        for(var i : desejos){
+            if(i.equals(presente)){
+                temp = i;
+            }
+        }
+        desejos.remove(temp);
     }
 
     public boolean equals(Pessoa pessoa) {
